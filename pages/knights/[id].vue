@@ -117,7 +117,7 @@ const onUpdateKnight = async () => {
 					<div class="flex items-center gap-2">
 						<Icon name="solar:user-broken" size="20" class="text-amber-600" />
 						Dados básicos
-						<template v-if="knight.deletedAt">
+						<template v-if="knight.isDeleted">
 							(<span class="flex items-center gap-2 text-xs text-amber-600">
 								Se tornou um Herói </span
 							>)
@@ -126,7 +126,7 @@ const onUpdateKnight = async () => {
 
 					<button
 						class="bg-emerald-600 text-white rounded-sm px-4 py-2 text-xs cursor-pointer"
-						v-if="!knight.deletedAt"
+						v-if="!knight.isDeleted"
 						@click="onMakeHimAHero()"
 					>
 						Torná-lo Herói
@@ -153,7 +153,7 @@ const onUpdateKnight = async () => {
 							<div class="w-full flex gap-1">
 								<input
 									class="w-full border py-2 px-3 rounded-sm border-zinc-200 text-sm disabled:cursor-not-allowed"
-									:disabled="!!knight.deletedAt"
+									:disabled="!!knight.isDeleted"
 									type="text"
 									v-model="nickname"
 								/>
@@ -161,7 +161,7 @@ const onUpdateKnight = async () => {
 									type="submit"
 									class="bg-emerald-600 text-white rounded-md text-xs px-4 h-10 cursor-pointer disabled:bg-zinc-400 disabled:cursor-not-allowed"
 									:disabled="!meta.valid"
-									v-if="!knight.deletedAt"
+									v-if="!knight.isDeleted"
 								>
 									Alterar
 								</button>
@@ -185,6 +185,16 @@ const onUpdateKnight = async () => {
 								disabled
 								type="text"
 								:value="knight.keyAttribute"
+							/>
+						</div>
+
+						<div class="flex flex-col" v-if="knight.isDeleted">
+							<label class="text-sm">Tornou-se Herói em:</label>
+							<input
+								class="border py-2 px-3 rounded-sm border-zinc-200 text-sm disabled:cursor-not-allowed"
+								disabled
+								type="text"
+								:value="moment(knight.deletedAt).format('lll')"
 							/>
 						</div>
 					</div>

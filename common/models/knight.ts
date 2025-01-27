@@ -13,5 +13,6 @@ export interface Knight {
 	weapons: Weapon[];
 	attributes: Attribute;
 	keyAttribute: EAttribute;
+	isDeleted: boolean;
 	deletedAt: Date | string;
 }
