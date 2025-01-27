@@ -40,7 +40,10 @@ const onLoadKnight = async () => {
 		.catch((response) => {
 			if (response.code === 'ERR_NETWORK') {
 				alert('Servidor offline');
+				return;
 			}
+
+			alert(response.data.message);
 		});
 };
 
@@ -62,7 +65,10 @@ const onMakeHimAHero = async () => {
 		.catch((response) => {
 			if (response.code === 'ERR_NETWORK') {
 				alert('Servidor offline');
+				return;
 			}
+
+			alert(response.data.message);
 		});
 };
 
@@ -88,7 +94,10 @@ const onUpdateKnight = async () => {
 		.catch((response) => {
 			if (response.code === 'ERR_NETWORK') {
 				alert('Servidor offline');
+				return;
 			}
+
+			alert(response.data.message);
 		});
 };
 </script>
@@ -226,7 +235,10 @@ const onUpdateKnight = async () => {
 										</p>
 
 										<span
-											class="bg-emerald-600 text-white text-xs px-1.5 py-0.5 rounded"
+											class="text-white text-xs px-1.5 py-0.5 rounded"
+											:class="
+												weapon.equipped ? 'bg-emerald-600' : 'bg-zinc-400'
+											"
 											>{{ weaponEquipped(weapon.equipped) }}</span
 										>
 									</div>

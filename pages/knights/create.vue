@@ -69,7 +69,10 @@ const onSubmit = async () => {
 		.catch((response) => {
 			if (response.code === 'ERR_NETWORK') {
 				alert('Servidor offline');
+				return;
 			}
+
+			alert(response.data.message);
 		});
 };
 
